@@ -9,15 +9,15 @@
 
         <div class="collapse navbar-collapse " [class.collapse] = "collapsed" (window:resize)="collapsed=true">
             <ul class="nav navbar-nav mr-auto ">
-                <li class="nav-item active"><a href='#' class="nav-link">Recipes</a></li>
-                <li class="nav-item"><a href='#' class="nav-link">Shopping List</a></li>
+                <li class="nav-item active"><a href='#' class="nav-link" (click)="onNavRecipe()">Recipes</a></li>
+                <li class="nav-item"><a href='#' class="nav-link" (click)="onNavShopping()">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav ms-auto">
-                <li class="nav-item dropdown ">
-                    <a href="'#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="True" aria-expanded="false"> Manage<span class="caret"></span></a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="dropdown-item"><a href='#'>Save Data</a></li>
-                        <li class="dropdown-item"><a href='#'>Fetch Data</a></li>
+                <li class="nav-item" ngbDropdown>
+                    <a href="#" class="nav-link" ngbDropdownToggle role="button" data-bs-toggle="dropdown" aria-haspopup="True" aria-expanded="false"> Manage<span class="caret"></span></a>
+                    <ul ngbDropdownMenu aria-labelledby="navbarDropdown">
+                        <li ngbDropdownItem><a href='#'>Save Data</a></li>
+                        <li ngbDropdownItem><a href='#'>Fetch Data</a></li>
                     </ul>
                 </li>
             </ul>
