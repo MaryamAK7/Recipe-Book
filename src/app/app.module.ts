@@ -13,6 +13,8 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { DropdownDirective } from './Shared/dropdown.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecipeService } from './RecipeService.service';
+import { ShoppingListService } from './ShoppingListService.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [RecipeService,ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
