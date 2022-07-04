@@ -1,26 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">Recipe Book</a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" area-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse " [class.collapse] = "collapsed" (window:resize)="collapsed=true">
-            <ul class="nav navbar-nav mr-auto ">
-                <li class="nav-item active"><a href='#' class="nav-link" (click)="onNavRecipe()">Recipes</a></li>
-                <li class="nav-item"><a href='#' class="nav-link" (click)="onNavShopping()">Shopping List</a></li>
-            </ul>
-            <ul class="nav navbar-nav ms-auto">
-                <li class="nav-item" ngbDropdown>
-                    <a href="#" class="nav-link" ngbDropdownToggle role="button" data-bs-toggle="dropdown" aria-haspopup="True" aria-expanded="false"> Manage<span class="caret"></span></a>
-                    <ul ngbDropdownMenu aria-labelledby="navbarDropdown">
-                        <li ngbDropdownItem><a href='#'>Save Data</a></li>
-                        <li ngbDropdownItem><a href='#'>Fetch Data</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/recipes" class="navbar-brand">Recipe Book</a>
     </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      area-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="collapsed = !collapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="collapse navbar-collapse"
+      [class.collapse]="collapsed"
+      (window:resize)="collapsed = true"
+    >
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/recipes" >Recipes</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/shopping-list" >Shopping List</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav ms-auto">
+        <li class="nav-item" ngbDropdown>
+          <a
+          style="cursor:pointer;"
+            class="nav-link"
+            ngbDropdownToggle
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="True"
+            aria-expanded="false"
+          >
+            Manage<span class="caret"></span
+          ></a>
+          <ul ngbDropdownMenu aria-labelledby="navbarDropdown">
+            <li ngbDropdownItem><a style="cursor:pointer;" >Save Data</a></li>
+            <li ngbDropdownItem><a style="cursor:pointer;">Fetch Data</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
