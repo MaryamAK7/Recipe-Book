@@ -1,37 +1,59 @@
 <div class="row">
   <div class="col-sx-12">
-    <img src={{chosenRecipe.imagePath}} altt="" class="img-responsive" />
+    <img src="{{ chosenRecipe.imagePath }}" altt="" class="img-responsive" />
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{chosenRecipe.name}}</h1>
+    <h1>{{ chosenRecipe.name }}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <div class="btn-group" ngbDropdown >
-      <button class="btn btn-primary" ngbDropdownToggle type="button" aria-haspopup="true" aria-expanded="false">
+    <div class="btn-group" ngbDropdown>
+      <button
+        class="btn btn-primary"
+        ngbDropdownToggle
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
         Manage Recipe <span class="caret"></span>
       </button>
       <ul ngbDropdownMenu>
-        <li><a (click)="onAddToShoppingList()" ngbDropdownItem routerLink="/shopping-list" style="cursor:pointer;">To shopping List</a></li>
-        <li><a  ngbDropdownItem style="cursor:pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
-        <li><a  ngbDropdownItem style="cursor:pointer;">Delete Recipe</a></li>
+        <li>
+          <a
+            (click)="onAddToShoppingList()"
+            ngbDropdownItem
+            routerLink="/shopping-list"
+            style="cursor: pointer"
+            >To shopping List</a
+          >
+        </li>
+        <li>
+          <a ngbDropdownItem style="cursor: pointer" (click)="onEditRecipe()"
+            >Edit Recipe</a
+          >
+        </li>
+        <li><a ngbDropdownItem style="cursor: pointer" (click)="onDeleteRecipe()">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
-        {{chosenRecipe.description}}
-    </div>
+  <div class="col-xs-12">
+    {{ chosenRecipe.description }}
+  </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
-      <ul class="list-group">
-        <li *ngFor="let ingredient of chosenRecipe.ingredient" class="list-group-item">
-        {{ingredient.name}} - {{ingredient.amount}}
-      </li></ul>
-    </div>
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        *ngFor="let ingredient of chosenRecipe.ingredients"
+        class="list-group-item"
+      >
+        {{ ingredient.name }} - {{ ingredient.amount }}
+      </li>
+    </ul>
+  </div>
 </div>
