@@ -9,7 +9,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class RecipesComponent implements OnInit {
  
-  constructor(private recipeService :RecipeService, private route:ActivatedRoute) {
+  constructor() {
   }
 
   ngOnInit(): void {
