@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component
 import { AuthComponent } from './Auth/auth/auth.component';
 import { LoadingComponent } from './Shared/loading/loading.component';
 import { RecipeResolverService } from './recipes/RecipesResolverService.service';
+import { AuthInterService } from './Auth/auth/auth-interceptor';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { RecipeResolverService } from './recipes/RecipesResolverService.service'
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [RecipeService,ShoppingListService,RecipeResolverService],
+  providers: [RecipeService,ShoppingListService,RecipeResolverService, {provide: HTTP_INTERCEPTORS, useClass : AuthInterService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
