@@ -22,12 +22,12 @@ const routes: Routes = [
       {
         path: ':id',
         component: RecipeDetailComponent,
-        resolve: RecipeResolverService,
+        resolve: [RecipeResolverService],
       },
       {
         path: ':id/edit',
         component: EditRecipeComponent,
-        resolve: RecipeResolverService,
+        resolve: [RecipeResolverService],
       },
     ],
   },

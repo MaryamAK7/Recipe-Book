@@ -21,6 +21,7 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
 import { AuthComponent } from './Auth/auth/auth.component';
 import { LoadingComponent } from './Shared/loading/loading.component';
+import { RecipeResolverService } from './recipes/RecipesResolverService.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { LoadingComponent } from './Shared/loading/loading.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [RecipeService,ShoppingListService],
+  providers: [RecipeService,ShoppingListService,RecipeResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
