@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <h2 style="margin-top: 10px;">Edit Your Recipe</h2>
+    <h2 style="margin-top: 10px;"> {{editMode ? 'Edit' : 'Add' }} Your Recipe</h2>
     <form (ngSubmit)="onSubmit()" [formGroup]="recipeForm">
       <div class="row" style="margin-top: 10px;" >
         <div class="col-xs-12">
