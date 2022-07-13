@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { AlertComponent } from 'src/app/Shared/alert/alert.component';
 import { AuthResponse, AuthService } from './authService.service';
 
 @Component({
@@ -13,6 +14,9 @@ export class AuthComponent implements OnInit {
   isLoginMode = false;
   error: string = null;
   isLoading = false;
+  private closeSub: Subscription;
+
+  @ViewChild('dynamic', {static:true, read: ViewContainerRef }) viewRef : ViewContainerRef;
 
   constructor(private authService: AuthService, private router : Router) {}
 
@@ -41,7 +45,21 @@ export class AuthComponent implements OnInit {
       error: (errorMessage) => {
         this.isLoading = false;
         this.error = errorMessage;
+       this.showErrorAlert(errorMessage);
       },
     });
+  }
+  onHandleClose(){
+    this.error = null;
+  }
+
+  showErrorAlert(error:string){
+    this.viewRef.clear();
+    const componentRef = this.viewRef.createComponent<AlertComponent>(AlertComponent);
+    componentRef.instance.message = error;
+    this.closeSub = componentRef.instance.close.subscribe(() => {
+      this.closeSub.unsubscribe();
+      this.viewRef.clear();
+    })
   }
 }

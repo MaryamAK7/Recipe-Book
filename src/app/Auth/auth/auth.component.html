@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+    <!-- <div class="alert alert-danger" *ngIf="error">{{error}}</div> -->
+    <!-- <app-alert [message]="error" *ngIf="error" (close)="onHandleClose()"></app-alert> -->
+    <ng-template #dynamic></ng-template>
     <div *ngIf="isLoading" style="text-align: center;"><app-loading></app-loading> </div>
     <form #authForm = "ngForm" (ngSubmit)="handleSubmit(authForm)" >
       <div class="form-group">
