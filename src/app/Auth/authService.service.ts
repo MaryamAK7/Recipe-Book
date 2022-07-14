@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { catchError, throwError, tap, Subject, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 import { environment } from 'src/environments/environment';
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from './store/auth.actions';
+
+import { Store } from '@ngrx/store';
 
 export interface AuthResponse {
   idToken: string;
@@ -16,15 +20,20 @@ export interface AuthResponse {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private store: Store<fromApp.AppState>
+  ) {}
 
-  user = new BehaviorSubject<User>(null);
+  // user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
-  
+
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+ environment.firebaseAPIKey,
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+          environment.firebaseAPIKey,
         {
           email: email,
           password: password,
@@ -42,7 +51,8 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+ environment.firebaseAPIKey,
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+          environment.firebaseAPIKey,
         {
           email: email,
           password: password,
@@ -57,7 +67,8 @@ export class AuthService {
       );
   }
   logout() {
-    this.user.next(null);
+    // this.user.next(null);
+    this.store.dispatch(new AuthActions.LogOut());
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
@@ -82,9 +93,25 @@ export class AuthService {
     if (!userData) {
       return;
     }
-    const loadUser = new User(userData.email,userData.id,userData._token,new Date(userData._tokenExpDate));
-    if(loadUser.token){
-      this.user.next(loadUser);
+    const loadUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpDate)
+    );
+    if (loadUser.token) {
+      // this.user.next(loadUser);
+      this.store.dispatch(
+        new AuthActions.LogIn({
+          email: loadUser.email,
+          userId: loadUser.id,
+          token: loadUser.token,
+          expirationDate: new Date(userData._tokenExpDate),
+        })
+      );
+      const expirationDuration =
+        new Date(userData._tokenExpDate).getTime() - new Date().getTime();
+      this.autoLogout(expirationDuration);
     }
   }
 
@@ -98,7 +125,15 @@ export class AuthService {
       dataRes.idToken,
       expireDate
     );
-    this.user.next(user);
+    // this.user.next(user);
+    this.store.dispatch(
+      new AuthActions.LogIn({
+        email: dataRes.email,
+        userId: dataRes.localId,
+        token: dataRes.idToken,
+        expirationDate: expireDate,
+      })
+    );
     localStorage.setItem('userData', JSON.stringify(user));
   }
 

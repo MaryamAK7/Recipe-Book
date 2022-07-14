@@ -5,8 +5,7 @@ import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/Shared/Ingredient.model';
 import { ShoppingListService } from 'src/app/ShoppingListService.service';
 import * as ShoppingListActions from '../store/ShoppingList.actions';
-import * as fromShoppingList from '../store/ShoppingList.reducer';
-
+import * as fromApp from '../../store/app.reducer';
 @Component({
   selector: 'app-shopping-edit',
   templateUrl: './shopping-edit.component.html',
@@ -21,12 +20,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private shoppingService: ShoppingListService,
-    private store: Store<fromShoppingList.AppState>
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
     this.subscription = this.store
-      .select('ShoppingList')
+      .select('shoppingList')
       .subscribe((stateData) => {
         if (stateData.updatedIngInd > -1) {
           this.editMode = true;

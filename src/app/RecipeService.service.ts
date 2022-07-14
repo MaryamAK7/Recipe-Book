@@ -5,14 +5,14 @@ import { Recipe } from "./recipes/recipe.model";
 import { Ingredient } from "./Shared/Ingredient.model";
 import { ShoppingListService } from "./ShoppingListService.service";
 import * as SLActions from "./shopping-list/store/ShoppingList.actions";
-import * as fromShoppingList from './shopping-list/store/ShoppingList.reducer';
+import * as fromApp from './store/app.reducer';
 
 @Injectable()
 export class RecipeService {
   
     recipeChanged = new Subject<Recipe[]>;
 
-    constructor(private shoppingService: ShoppingListService, private store : Store<fromShoppingList.AppState>){}
+    constructor(private shoppingService: ShoppingListService, private store : Store<fromApp.AppState>){}
     // private recipes:Recipe[] = [
     //     new Recipe('Chicken Escalop','this is a simple test','../../../assets/chickenEscalop.jpg',[new Ingredient('chicken Breats', 1), new Ingredient('Fries',20), new Ingredient('Bread Crumps', 10)]),
     //     new Recipe('Beef Burger','this is a simple test','../../../assets/burger.jpg',[new Ingredient('Buns',1), new Ingredient('Meat',2), new Ingredient('Tomato', 1), new Ingredient('letuce',1)])
