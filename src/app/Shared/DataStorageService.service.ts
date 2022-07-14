@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { RecipeService } from '../RecipeService.service';
 import { Recipe } from '../recipes/recipe.model';
 import { map, tap, take, exhaustMap } from 'rxjs/operators';
-import { AuthService } from '../Auth/auth/authService.service';
+import { AuthService } from '../Auth/authService.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {

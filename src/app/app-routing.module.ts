@@ -4,7 +4,7 @@ import { PreloadAllModules, PreloadingStrategy, RouterModule, Routes } from '@an
 const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   {path:'recipes', loadChildren: () => import('src/app/recipes/RecipesModule').then((m) => m.RecipesModule)},
-  {path: 'auth', loadChildren: () => import('src/app/Auth/auth/Auth.module').then((m) => m.AuthModule) },
+  {path: 'auth', loadChildren: () => import('src/app/Auth/Auth.module').then((m) => m.AuthModule) },
   {path:'shopping-list',loadChildren: () => import('src/app/shopping-list/slist.module').then((m) => m.ShoppingListModule) }
 ];
 

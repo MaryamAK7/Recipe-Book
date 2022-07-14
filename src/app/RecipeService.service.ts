@@ -4,8 +4,8 @@ import { Subject } from "rxjs";
 import { Recipe } from "./recipes/recipe.model";
 import { Ingredient } from "./Shared/Ingredient.model";
 import { ShoppingListService } from "./ShoppingListService.service";
-import * as SLActions from "./store/ShoppingList.actions";
-import * as fromShoppingList from './store/ShoppingList.reducer';
+import * as SLActions from "./shopping-list/store/ShoppingList.actions";
+import * as fromShoppingList from './shopping-list/store/ShoppingList.reducer';
 
 @Injectable()
 export class RecipeService {

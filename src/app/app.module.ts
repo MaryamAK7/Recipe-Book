@@ -9,7 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './Shared/shared.module';
 import { CoreModule } from './core.module';
 import { StoreModule } from '@ngrx/store';
-import { ShoppingReducer } from './store/ShoppingList.reducer';
+import { ShoppingReducer } from './shopping-list/store/ShoppingList.reducer';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],

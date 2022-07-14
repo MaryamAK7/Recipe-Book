@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/Shared/Ingredient.model';
 import { ShoppingListService } from 'src/app/ShoppingListService.service';
-import * as ShoppingListActions from '../../store/ShoppingList.actions';
-import * as fromShoppingList from '../../store/ShoppingList.reducer';
+import * as ShoppingListActions from '../store/ShoppingList.actions';
+import * as fromShoppingList from '../store/ShoppingList.reducer';
 
 @Component({
   selector: 'app-shopping-edit',
