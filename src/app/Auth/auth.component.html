@@ -3,6 +3,7 @@
     <!-- <div class="alert alert-danger" *ngIf="error">{{error}}</div> -->
     <!-- <app-alert [message]="error" *ngIf="error" (close)="onHandleClose()"></app-alert> -->
     <ng-template #dynamic></ng-template>
+    <h2 class="authHeading">Please {{!isLoginMode ? 'Sign Up' : 'Login'}}</h2>
     <div *ngIf="isLoading" style="text-align: center;"><app-loading></app-loading> </div>
     <form #authForm = "ngForm" (ngSubmit)="handleSubmit(authForm)" >
       <div class="form-group">

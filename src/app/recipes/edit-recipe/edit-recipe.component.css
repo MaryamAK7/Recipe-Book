@@ -1,3 +1,9 @@
 input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
     border: 1px solid red;
 }
+.addIngBtn{
+    margin-top: 10px;
+}
+.edit-Img{
+    width: 100%;
+}

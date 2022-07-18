@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeService } from 'src/app/RecipeService.service';
 import { Recipe } from '../recipe.model';
+
 
 @Component({
   selector: 'app-recipe-detail',
@@ -10,30 +12,40 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   chosenRecipe!: Recipe;
-  
-  id!:number;
+
+  isCanceled:boolean = false;
+  id!: number;
   constructor(
     private recipeService: RecipeService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService:NgbModal
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.chosenRecipe = this.recipeService.getRecipe(this.id);
+      
     });
+
   }
 
   onAddToShoppingList() {
     this.recipeService.addToShoppingList(this.chosenRecipe.ingredients);
     this.router.navigate(['shopping-list']);
   }
-  onEditRecipe(){
-    this.router.navigate(['edit'],{relativeTo:this.route})
+  onEditRecipe() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
   }
-  onDeleteRecipe(){
+  onDeleteRecipe(content) {
+    this.openSm(content)
+  }
+  openSm(content){
+    this.modalService.open(content, {size:'lg'});
+  }
+  onYesModal(){
     this.recipeService.deleteRecipe(this.id);
-    this.router.navigate(['../'],{relativeTo:this.route})
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

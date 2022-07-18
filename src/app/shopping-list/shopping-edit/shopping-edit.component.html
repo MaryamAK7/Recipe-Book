@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-md-12">
     <form #f="ngForm" (ngSubmit)="addIngredient(f)">
       <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="col-md-8 form-group">
           <label for="name">Name</label>
           <input
             type="text"
@@ -13,7 +13,7 @@
             required
           />
         </div>
-        <div class="col-sm-2 form-group">
+        <div class="col-md-4 form-group">
           <label for="amount">Amount</label>
           <input
             type="number"
@@ -27,17 +27,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-12">
           <button class="btn btn-success" type="submit" [disabled]="!f.valid">
             {{ editMode ? "Update" : "Add" }}
-          </button>
-          <button
-            class="btn btn-danger"
-            type="button"
-            (click)="deleteIngredient()"
-            *ngIf="editMode"
-          >
-            Delete
           </button>
           <button class="btn btn-primary" type="button" (click)="onClear()" style="margin: 10px;">
             Clear

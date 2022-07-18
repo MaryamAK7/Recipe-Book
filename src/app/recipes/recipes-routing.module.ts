@@ -11,7 +11,9 @@ import { RecipeResolverService } from './RecipesResolverService.service';
 const routes: Routes = [
   {
     path: '',
-    component: RecipesComponent, canActivate:[AuthGuard],
+    component: RecipesComponent
+    // , canActivate:[AuthGuard]
+    ,
     children: [
       { path: '', component: RecipeStartComponent, pathMatch: 'full' },
       { path: 'new', component: EditRecipeComponent },

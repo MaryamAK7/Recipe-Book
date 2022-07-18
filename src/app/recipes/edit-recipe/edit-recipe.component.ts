@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Form, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Form,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { RecipeService } from 'src/app/RecipeService.service';
 import { Recipe } from '../recipe.model';
 
@@ -9,17 +17,23 @@ import { Recipe } from '../recipe.model';
   templateUrl: './edit-recipe.component.html',
   styleUrls: ['./edit-recipe.component.css'],
 })
-export class EditRecipeComponent implements OnInit {
+export class EditRecipeComponent implements OnInit, OnDestroy {
   id!: number;
   editMode: boolean = false;
   recipeForm!: FormGroup;
   editedRecipe!: Recipe;
+  private sub:Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+   
   ) {}
+  ngOnDestroy(): void {
+    if(this.sub)
+    this.sub.unsubscribe()
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -30,7 +44,6 @@ export class EditRecipeComponent implements OnInit {
   }
 
   onSubmit() {
-    
     const newRecipe = new Recipe(
       this.recipeForm.value['name'],
       this.recipeForm.value['description'],
@@ -39,17 +52,12 @@ export class EditRecipeComponent implements OnInit {
     );
     if (this.editMode) {
       this.recipeService.updateRecipe(this.id, newRecipe);
-      
     } else {
       this.recipeService.addRecipe(newRecipe);
-      
     }
     this.router.navigate(['../'], { relativeTo: this.route });
-   
   }
-  onCancel() {
-    this.router.navigate(['../'], { relativeTo: this.route });
-  }
+ 
   private initForm() {
     let recipeName: string = '';
     let recipeDesc: string = '';
@@ -58,7 +66,6 @@ export class EditRecipeComponent implements OnInit {
 
     if (this.editMode) {
       let editedRecipe = this.recipeService.getRecipe(this.id);
-
       recipeName = editedRecipe.name;
       recipeDesc = editedRecipe.description;
       recipeImg = editedRecipe.imagePath;
@@ -97,7 +104,14 @@ export class EditRecipeComponent implements OnInit {
       })
     );
   }
-  onDeleteIngredient(i:number){
-   (<FormArray> this.recipeForm.get('ingredients')).removeAt(i);
+  onDeleteIngredient(i: number) {
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(i);
   }
+
+  onCancel() {
+    this.router.navigate(['../'], { relativeTo: this.route });
+
+  }
+
+
 }

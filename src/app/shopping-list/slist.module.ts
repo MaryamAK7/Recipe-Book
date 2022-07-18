@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGuard } from '../Auth/auth-guard';
 import { SharedModule } from '../Shared/shared.module';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { ShoppingListComponent } from './shopping-list.component';
@@ -14,7 +15,9 @@ import { ShoppingListComponent } from './shopping-list.component';
     FormsModule,
     NgbModule,
     HttpClientModule,
-    RouterModule.forChild([ { path: '', component: ShoppingListComponent },])
+    RouterModule.forChild([ { path: '', component: ShoppingListComponent  , 
+    // canActivate:[AuthGuard]
+  },])
   ],
   exports:[
   ]

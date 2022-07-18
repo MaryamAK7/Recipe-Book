@@ -10,7 +10,7 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private recipeService: RecipeService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   saveData() {

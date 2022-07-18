@@ -1,9 +1,9 @@
-<a style="cursor: pointer;" class="list-group-item clearfix list-group-item-action" [routerLink]="[index]" routerLinkActive="active">
+<a style="cursor: pointer;" class="list-group-item clearfix list-group-item-action " [routerLink]="[index]" routerLinkActive="active">
     <div class="float-start">
         <h4 class="list-group-item-heading">{{recipe.name}}</h4>
-        <p class="list-group-item-text">{{recipe.description}}</p>
+        <p class="list-group-item-text">{{recipe.description.slice(0,40)}} ... </p>
     </div>
-    <span class="float-end">
-        <img src="{{recipe.imagePath}}" alt="{{recipe.name}}" class="'img-responsive" style="max-height : 50px;">
+    <span class="float-end ">
+        <img src="{{recipe.imagePath}}" alt="{{recipe.name}}" class="'img-responsive list-img">
     </span>
 </a>

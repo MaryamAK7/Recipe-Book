@@ -1,0 +1,19 @@
+.shoppingListCont{
+    margin-top: 50px;
+}
+.ingItem{
+    display: flex;
+    justify-content: space-between;
+}
+.ingDetail{
+    width: 90%;
+}
+.SlCont{
+    border: 1px solid lightblue;
+    box-shadow: 0.5px 1px 8px rgba(146, 146, 233, 0.349);
+    padding: 50px;
+}
+.Slheading{
+    text-align: center;
+    margin-bottom: 40px;
+}

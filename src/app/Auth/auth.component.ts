@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -10,17 +10,29 @@ import { AuthResponse, AuthService } from './authService.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   isLoginMode = true;
   error: string = null;
   isLoading = false;
   private closeSub: Subscription;
+  private storeSub: Subscription;
 
   @ViewChild('dynamic', {static:true, read: ViewContainerRef }) viewRef : ViewContainerRef;
 
   constructor(private authService: AuthService, private router : Router) {}
+  
+  ngOnDestroy(): void {
+    if(this.closeSub){
+      this.closeSub.unsubscribe()
+    }
+    if(this.storeSub){
+      this.storeSub.unsubscribe()
+    }
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
@@ -33,6 +45,7 @@ export class AuthComponent implements OnInit {
     this.error = null;
     if (this.isLoginMode) {
       authObs = this.authService.login(form.value.email, form.value.password);
+      
     } else {
       authObs = this.authService.signup(form.value.email, form.value.password);
     }

@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Ingredient } from '../Shared/Ingredient.model';
 import { ShoppingListService } from '../ShoppingListService.service';
-import * as fromApp from '../store/app.reducer'
-import * as ShoppingListActions from './store/ShoppingList.actions'
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,28 +9,26 @@ import * as ShoppingListActions from './store/ShoppingList.actions'
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  //subscription = new Subscription;
+  subscription = new Subscription;
 
   ingredients!:Ingredient[];
-  // ingredients: Observable<{ingredients:Ingredient[]}>
-  constructor(private shoppingService:ShoppingListService, private store : Store<fromApp.AppState>) { }
+  constructor(private shoppingService:ShoppingListService) { }
 
   ngOnInit(): void {
-    this.store.select('shoppingList').subscribe(stateData => this.ingredients = stateData.ingredients)
-
-    //with service
-
-    // this.ingredients = this.shoppingService.getIngredients();
-    // this.subscription = this.shoppingService.ingredientChanged.subscribe((ingredients: Ingredient[]) => {
-    //   this.ingredients = ingredients;
-    // })
+    this.ingredients = this.shoppingService.getIngredients();
+    this.subscription = this.shoppingService.ingredientChanged.subscribe((ingredients: Ingredient[]) => {
+      this.ingredients = ingredients;
+    })
   }
   ngOnDestroy(): void {
-      // this.subscription.unsubscribe();
+      this.subscription.unsubscribe();
   }
   
   onEditItem(index:number){
-    // this.shoppingService.startedEditing.next(index);
-    this.store.dispatch(new ShoppingListActions.StartEdit(index))
+    this.shoppingService.startedEditing.next(index);
+  }
+  deleteIngredient(index:number) {
+
+    this.shoppingService.deleteIngredient(index)
   }
 }
