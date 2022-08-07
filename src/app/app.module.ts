@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './Shared/shared.module';
 import { CoreModule } from './core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,

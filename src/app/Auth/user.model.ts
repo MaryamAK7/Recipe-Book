@@ -3,7 +3,9 @@ export class User {
     public email: string,
     public id: string,
     private _token: string,
-    private _tokenExpDate: Date
+    private _tokenExpDate: Date,
+    public name?: string,
+    public gender?:string
   ) {}
 
   get token() {

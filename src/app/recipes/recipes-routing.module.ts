@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: RecipesComponent
-    // , canActivate:[AuthGuard]
+    , canActivate:[AuthGuard]
     ,
     children: [
       { path: '', component: RecipeStartComponent, pathMatch: 'full' },

@@ -1,9 +1,9 @@
 .authHeading{
     text-align: center;
-    margin-bottom: 30px ;
+    margin-bottom: 20px ;
 }
 .authPage{
-    margin-top:50px;
+    margin:50px auto;
     padding: 40px;
     border: 1px solid lightblue;
     box-shadow: 0.5px 1px 8px rgba(146, 146, 233, 0.349);
@@ -19,4 +19,11 @@
     cursor: pointer;
     color:blue;
     font-style:normal;
+}
+.logInLogo{
+    width:20%;
+    margin-bottom: 20px;
+}
+.logInLogoR{
+    justify-content: center;
 }

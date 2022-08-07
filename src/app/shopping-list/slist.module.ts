@@ -16,7 +16,7 @@ import { ShoppingListComponent } from './shopping-list.component';
     NgbModule,
     HttpClientModule,
     RouterModule.forChild([ { path: '', component: ShoppingListComponent  , 
-    // canActivate:[AuthGuard]
+    canActivate:[AuthGuard]
   },])
   ],
   exports:[

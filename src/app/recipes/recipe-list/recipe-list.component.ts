@@ -10,6 +10,7 @@ import { DataStorageService } from 'src/app/Shared/DataStorageService.service';
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css'],
+  
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes!: Recipe[];

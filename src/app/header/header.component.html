@@ -23,19 +23,19 @@
     >
       <ul class="nav navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/recipes" >
+          <a class="nav-link" routerLink="/recipes"  [ngClass]="{'disabled':!isAuthenticated}">
           Recipes</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/auth" *ngIf="!isAuthenticated" >Authenticate</a>
+          <a class="nav-link" routerLink="/auth/signIn" *ngIf="!isAuthenticated" >Authenticate</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/shopping-list" >Shopping List</a>
+        <li class="nav-item" routerLinkActive="active" >
+          <a class="nav-link" routerLink="/shopping-list" [ngClass]="{'disabled':!isAuthenticated}">Shopping List</a>
         </li>
       </ul>
       <ul class="nav navbar-nav ms-auto" *ngIf="isAuthenticated">
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/shopping-list" (click)="onLogOut()" >Log out</a>
+          <a class="nav-link" routerLink="/auth/signIn" (click)="onLogOut()" >Log out</a>
         </li>
         <li class="nav-item" ngbDropdown >
           <a

@@ -1,4 +1,4 @@
-<a style="cursor: pointer;" class="list-group-item clearfix list-group-item-action " [routerLink]="[index]" routerLinkActive="active">
+<a style="cursor: pointer;" [@list] class="list-group-item clearfix list-group-item-action " [routerLink]="[index]" routerLinkActive="active">
     <div class="float-start">
         <h4 class="list-group-item-heading">{{recipe.name}}</h4>
         <p class="list-group-item-text">{{recipe.description.slice(0,40)}} ... </p>
